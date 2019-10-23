@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+body {
+    background-color: rgb(240, 240, 240);
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+  	color: #222;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+label {
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    display: block;
+    width: 500px;
+    height: 400px;
+    position: absolute;
+    left: 50%;
+    top: 65%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+
+.card {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transition: all 600ms;
+    transition: all 600ms;
+    z-index: 20;
+}
+
+    .card div {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        background: #FFF;
+        text-align: center;
+        line-height: 050px;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        border-radius: 2px;
+    }
+
+    .card .back {
+        background: #222;
+        color: #FFF;
+        -webkit-transform: rotateX(180deg);
+        transform: rotateX(180deg);
+    }
+
+label:hover .card {
+    -webkit-transform: rotateX(15deg);
+    transform: rotateX(15deg);
+    box-shadow: 0 20px 20px rgba(50,50,50,.2);
+}
+
+input {
+    display: none;
+}
+
+:checked + .card {
+    transform: rotateX(180deg);
+    -webkit-transform: rotateX(180deg);
+}
+
+label:hover :checked + .card {
+    transform: rotateX(160deg);
+    -webkit-transform: rotateX(160deg);
+    box-shadow: 0 20px 20px rgba(255,255,255,.2);
+}
+    </style>
+    <title>Random</title>
+  </head>
+  <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Trivia Search</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+            
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                  <div class="navbar-nav float-right text-right pr-3">
+                    <a class="nav-item nav-link " href="home.html">Home </a>
+                    <a class="nav-item nav-link active" href="random.html">Random</a>
+                    <a class="nav-item nav-link" href="#">Pricing</a>
+                  </div>
+                </div>
+              </nav>
+<!-- Intro Heading -->
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Random Trivia!</h1>
+    <p class="lead">Play our trivia game: solve a random trivia</p>
+</div>
+
+
+<!-- Main Content -->
+<!-- Cards -->
+<label>
+    <input type="checkbox"/>
+    <div class=" card " >
+        {% for trivia_val in trivia %}
+        <div class="front">
+            <div class="card-body">
+                <h5 class="card-title">Trivia #{{ trivia_val.id }}</h5>
+                <!-- Category -->
+
+                    <strong>Category:</strong>
+                    <br>
+                    {{ trivia_val.category}}
+                    
+                    <br>
+                    <strong>Question:</strong>
+                    <br>
+                    {{ trivia_val.question }}
+
+                    <p>Click for Answer</p>
+            </div>            
+        </div>
+        <div class="back">
+            <br> 
+            <br>       
+            <br>   
+            <strong>Answer:</strong>
+            <br>
+            {{ trivia_val.answer }}
+        </div>
+    </div>
+    {% endfor %}
+</label>
+
+<footer class="text-muted">
+    <div class="footer container text-center">
+        <p>© Ensar K. Dogrusoz {% now "Y" %}</p>
+    </div>
+</footer>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
