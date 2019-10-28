@@ -14,22 +14,21 @@
           </button>
         </div>
         <div class="modal-body">
-          
+            <form action="/home/" method="post">
+              {% csrf_token %}
+           {{ form.as_p }}
 
-            <div class="form-group">
-              <select name="category-picked" class="custom-select custom-select-lg" size="20">
-                <option selected>Select a category</option>
-                {% for category in categories %}
-                <option value="{{category.id}}">{{category.title}}</option>
-
-                {% endfor %}
- 
-              </select>
-            </div>
-
-            <div class="form-group float-right">
-              <input type="submit" class="btn btn-primary"/>
-            </div>
+              <div class="form-group">
+                <select name="category-picked" class="custom-select custom-select-lg" size="20">
+                  <option selected>Select a category</option>
+                  {% for category in categories %}
+                  <option value="{{category.id}}">{{category.title}}</option>
+                  {% endfor %} 
+                </select>
+              </div>
+              <div class="form-group float-right">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <input type="submit" class="btn btn-primary"/>                </div>
           </form>
         </div>
       </div>
@@ -45,8 +44,13 @@
 
     <div class="container text-center">
       <p>Search for a Jeopardy category</p>
+
       <!-- Button trigger modal -->
       <button type="button" class="btn btn-success my-2" data-toggle="modal" data-target="#category-modal">Find a category</button>
+      <div class="dropdown">
+      
     </div>
+    
+
 
     {% endblock %}

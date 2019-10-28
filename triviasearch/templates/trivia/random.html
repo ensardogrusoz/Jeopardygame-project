@@ -40,7 +40,10 @@
             {{ trivia_val.answer }}
         </div>
     </div>
+    
     {% endfor %}
 </label>
-
+<div style="text-align: center;">
+    <button class="btn btn-primary" value="Refresh Page" onclick="window.location.reload();">New Question</button>
+</div>
 {% endblock %}
