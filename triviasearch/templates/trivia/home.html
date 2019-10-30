@@ -4,36 +4,9 @@
 
 
   <!-- ********************** Modal to pick states ***********************-->
-<div class="modal fade" id="category-modal" tabindex="-1" role="dialog" aria-labelledby="category-modal-title" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="category-modal-title">Find a category</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <form action="/home/" method="post">
-              {% csrf_token %}
-           {{ form.as_p }}
 
-              <div class="form-group">
-                <select name="category-picked" class="custom-select custom-select-lg" size="20">
-                  <option selected>Select a category</option>
-                  {% for category in categories %}
-                  <option value="{{category.id}}">{{category.title}}</option>
-                  {% endfor %} 
-                </select>
-              </div>
-              <div class="form-group float-right">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <input type="submit" class="btn btn-primary"/>                </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
+
+
     <!-- **************************** End Modal ****************************** -->
 
   <!-- Intro Heading -->
@@ -41,16 +14,37 @@
     <h1 class="display-4">Welcome to Trivia</h1>
     <p class="lead">Play our trivia game: solve a random trivia or search by category</p>
 </div>
+<br>
+<br>
+<div class="container text-center">
+  <p>Search for a Jeopardy category</p>
 
-    <div class="container text-center">
-      <p>Search for a Jeopardy category</p>
+  <form  method="post">
+      <div class="autocomplete" style="width:300px;">
+          {% csrf_token %}
+          {{ form.as_p }}
+      </div>
+      <br>
+      <button class="btn btn-outline-primary" type="submit">Submit</button>
 
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-success my-2" data-toggle="modal" data-target="#category-modal">Find a category</button>
-      <div class="dropdown">
-      
-    </div>
-    
+  </form>
+  
+  <br>
+  <div class="form-group">
+    <select name="category-picked" class="custom-select custom-select-lg"  style="width: 400px" size="15">
+      <option selected>Select a category</option>
+      {% for category in categories %}
+      <option value="{{category.id}}">{{category.title}}</option>
+      {% endfor %} 
+    </select>
+  </div>
+  <div class="form-group">
+  <input href="/listcategory_results/{{category.id}}" type="submit" class="btn btn-primary"/>             
+  </div>
+  
+</div>  
+<br>
 
 
-    {% endblock %}
+
+{% endblock %}

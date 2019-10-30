@@ -1,37 +1,30 @@
+
+
+
 {% extends 'trivia/base.html' %}
 {% block content %}
 <style>
-label {
-    -webkit-perspective: 1000px;
-    perspective: 1000px;
-    -webkit-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-    display: block;
-    width: 500px;
-    height: 400px;
-    position: absolute;
-    left: 50%;
-    top: 65%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    cursor: pointer;
-}
-
-
+    label {
+        -webkit-perspective: 1000px;
+        perspective: 1000px;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        display: block;
+        width: 500px;
+        height: 400px;
+        position: absolute;
+        left: 50%;
+        top: 65%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        cursor: pointer;
+    }
+    
+    
 </style>
-<!-- Intro Heading -->
-<title>Random</title>
-<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-    <h1 class="display-4">Random Trivia!</h1>
-    <p class="lead">solve a random trivia question</p>
-</div>
-
-
-<!-- Main Content -->
-<!-- Cards -->
 <label>
     <input type="checkbox"/>
-    <div class=" card " >
+    <div class=" card card-columns mb-3 text-center" >
         {% for trivia_val in trivia %}
         <div class="front">
             <div class="card-body">
@@ -62,7 +55,8 @@ label {
     
     {% endfor %}
 </label>
-<div style="text-align: center;">
-    <button class="btn btn-primary" value="Refresh Page" onclick="window.location.reload();">New Question</button>
-</div>
+                
+
+                
+
 {% endblock %}

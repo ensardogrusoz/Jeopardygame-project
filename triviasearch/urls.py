@@ -2,8 +2,8 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.category, name='home'),
+    path('', views.search, name='home'),
     path('random/', views.random, name='random-trivia'),
-    path('results/', views.results, name ='results'),
+    path('listcategory_results/', views.search_results, name ='results'),
     
 ]
