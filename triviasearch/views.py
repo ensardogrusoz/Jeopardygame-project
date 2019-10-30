@@ -133,7 +133,7 @@ def search_results(request, cat, diff, date):
         dict = {'id': clue['id'], 'question':clue['question'], 'answer':clue['answer'], 'category':clue['category']['title'], 'airdate':clue['airdate'][:10], 'value':clue['value'], 'category_id':clue['category_id']}
         content_set.append(dict)
 
-    return render(request, 'trivia/listcategory_results.html', {'trivia':content_set, 'title':cat, 'success':success, 'titleBar':cat})
+    return render(request,'trivia/listcategory_results.html', {'trivia':content_set, 'title':cat, 'success':success, 'titleBar':cat})
 
 
 
