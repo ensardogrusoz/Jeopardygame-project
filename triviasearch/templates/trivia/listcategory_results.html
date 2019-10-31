@@ -12,9 +12,9 @@
         display: block;
         width: 500px;
         height: 400px;
-        position: absolute;
+        position: relative;
         left: 50%;
-        top: 65%;
+        top: 200px;
         -webkit-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
         cursor: pointer;
@@ -22,22 +22,42 @@
     
     
 </style>
+
+<!-- Intro Heading -->
+<title>Results</title>
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Found Your Results!</h1>
+    <p class="lead">take a look</p>
+</div>
+<div style="text-align: center;">
+    <button class="btn btn-primary" onclick="window.location.href=''">Back To Search</button>
+</div>
+{% for trivia_val in trivia %}
+
 <label>
-    <input type="checkbox"/>
+    
+    <input type="checkbox" style="opacity:0"/>
+    
     <div class=" card card-columns mb-3 text-center">
-        {% for trivia_val in trivia %}
+       
         <div class="front">
-            <div class="card-body">
+            <div class="card-body"> 
                 <h5 class="card-title">Trivia #{{ trivia_val.id }}</h5>
                 <!-- Category -->
-
+                
                     <strong>Category:</strong>
-                    <br>
                     {{ trivia_val.category}}
-                    
                     <br>
+
+                    <strong>Airdate:</strong>
+                    <a href="/airdate/{{trivia_val.airdate}}">{{ trivia_val.airdate}}</a>
+                    <br>
+
+                    <strong>Difficulty:</strong>
+                    <a href="/difficulty/{{trivia_val.value}}">{{ trivia_val.value}}</a>
+                    <br>
+
                     <strong>Question:</strong>
-                    <br>
                     {{ trivia_val.question }}
 
                     <p>Click for Answer</p>
@@ -51,11 +71,14 @@
             <br>
             {{ trivia_val.answer }}
         </div>
+        
     </div>
     
-    {% endfor %}
+    
 </label>
-                
+<br>
+<br>
+{% endfor %}                
 
                 
 

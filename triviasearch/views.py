@@ -43,17 +43,6 @@ def search(request):
             to_date = data['to_date'] if data['to_date'] != None else datetime.date(2011, 12, 12)
 
             return search_results(request, cat, diff, (from_date, to_date))
-    form = CategoryForm()
-    offset=0
-    content = []
-    for offset in range(0,184,100):
-        api_req = 'http://jservice.io/api/categories?count=100&offset=' + str(offset)       
-        r = requests.get(api_req)
-        category_set = r.json()
-        
-        for category in category_set:          
-            dict = { 'title': category['title'], 'id': category['id'] }            
-            content.append(dict)
     # 
     # content = []
     # offset = ran.randint(0, 2000)
@@ -64,7 +53,7 @@ def search(request):
     #     dict = {'title': category['title'], 'id': category['id']}
     #     content.append(dict)
 
-    return render(request, 'trivia/home.html', {'categories': content, 'form': form, 'titleBar' : "Search"})
+    return render(request, 'trivia/home.html', { 'form': form, 'titleBar' : "Search"})
 
 def search_results(request, cat, diff, date):
     content_set = []
@@ -101,17 +90,9 @@ def search_results(request, cat, diff, date):
                         continue
 
                     # Max difficulty value == 1000
-                    dict = {
-                            '100': 100,
-                            '200': 200,
-                            '300': 300,
-                            '400': 400,
-                            '500': 500,
-                            '600': 600,
-                            '700': 700,
-                            '800': 800,
-                            '900': 900,
-                            '1000': 1000,
+                    dict = {'easy': 0 < value <= 400,
+                            'medium': 400 < value <= 700,
+                            'hard': 700 < value <= 1000,
                             None : True}
                     difficulty = dict[diff]
 
@@ -126,8 +107,8 @@ def search_results(request, cat, diff, date):
     if len(clues_set) != 0:
         success = True
 
-    f = open("all_categories.txt", "w")
-    f.write(str(categories))
+    # f = open("all_categories.txt", "w")
+    # f.write(str(categories))
 
     for clue in clues_set:
         dict = {'id': clue['id'], 'question':clue['question'], 'answer':clue['answer'], 'category':clue['category']['title'], 'airdate':clue['airdate'][:10], 'value':clue['value'], 'category_id':clue['category_id']}
