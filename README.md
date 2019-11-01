@@ -5,7 +5,7 @@
   <img align="center" src="trivia/static/trivia/assets/co.png" width=600><br>
 </p>
 
-Link to depolyed website: 
+Link to depolyed website: https://jtriviasearch.herokuapp.com/
 
 Link to GitHub repository: https://github.com/ensardogrusoz/jeopardygame-project
 
@@ -32,7 +32,6 @@ Optional: You may want to include these bonus features:
 
 * HTML/CSS
 * Bootstrap
-* JavaScript
 
 ### Back-End
 
