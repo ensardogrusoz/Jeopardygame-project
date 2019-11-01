@@ -15,6 +15,7 @@ def search(request):
     # Search Box
     if request.method == 'POST':
         form = CategoryForm(request.POST)     
+    #uses the form.py
 
         if form.is_valid():
             data = form.cleaned_data
@@ -23,32 +24,35 @@ def search(request):
             diff = data['difficulty'] if data['difficulty']!= "" else None
             from_date = data['from_date'] if data['from_date'] != None else datetime.date(1964, 1, 1)
             to_date = data['to_date'] if data['to_date'] != None else datetime.date(2015, 12, 12)
-
+            
+            #sends it to search_results view
             return search_results(request, cat, diff, (from_date, to_date))
+
+    #this is to generate random categories on the home page for my list
     form = CategoryForm()
     content = []
     offset = ran.randint(0, 2000)
-    req = "http://jservice.io/api/categories?count=25" + "&offset=" + str(offset)
-    response = requests.get(req)
+    api_req = "http://jservice.io/api/categories?count=25" + "&offset=" + str(offset)
+    response = requests.get(api_req)
     category_set = response.json()
     for category in category_set:
         dict = {'title': category['title'], 'id': category['id']}
         content.append(dict)
 
-    return render(request, 'trivia/home.html', {'categories': content, 'form': form, 'titleBar' : "Search"})
+    return render(request, 'trivia/home.html', {'categories': content, 'form': form,})
 
 
 
-
+#this view is for the category results after you submit a search
 def search_results(request, cat, diff, date):
     content_set = []
     clues_set = []
-    success = False
 
     offset = 0
     categories = []
     is_blank = (cat == None)
 
+    #looks throught every category in api 
     while True:
         api_req = "http://jservice.io/api/categories?count=100&offset=" + str(offset)
         response = requests.get(api_req)
@@ -76,7 +80,7 @@ def search_results(request, cat, diff, date):
                     if value == None:
                         continue
 
-                    # Max difficulty value == 1000
+                    # Sets the difficulties
                     dict = {'easy': 0 < value <= 400,
                             'medium': 400 < value <= 700,
                             'hard': 700 < value <= 1000,
@@ -90,20 +94,19 @@ def search_results(request, cat, diff, date):
                         clues_set.append(clue)
 
         offset += 100
+
         # if category['title'] in offset == None:
         #     break
-
-    if len(clues_set) != 0:
-        success = True
 
     for clue in clues_set:
         dict = {'id': clue['id'], 'question':clue['question'], 'answer':clue['answer'], 'category':clue['category']['title'], 'airdate':clue['airdate'][:10], 'value':clue['value'], 'category_id':clue['category_id']}
         content_set.append(dict)
 
-    return render(request,'trivia/listcategory_results.html', {'trivia':content_set, 'title':cat, 'success':success, 'titleBar':cat})
+    return render(request,'trivia/listcategory_results.html', {'trivia':content_set, 'title':cat})
 
 
-
+#view for the random page 
+#gets random question
 def random(request):
     api_req = 'http://jservice.io/api/random'
     r = requests.get(api_req)
