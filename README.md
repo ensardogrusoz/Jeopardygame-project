@@ -1,10 +1,6 @@
 # Jeopardygame
 ## Capital One Winter 2020 Software Engineering Summit
 
-<p align="center">
-  <img align="center" src="trivia/static/trivia/assets/co.png" width=600><br>
-</p>
-
 Link to depolyed website: https://jtriviasearch.herokuapp.com/
 
 Link to GitHub repository: https://github.com/ensardogrusoz/jeopardygame-project
