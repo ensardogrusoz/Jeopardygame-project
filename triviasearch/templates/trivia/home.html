@@ -2,46 +2,47 @@
 {% block content %}
     <title>Home</title>
 
-
-  <!-- ********************** Modal to pick states ***********************-->
-
-
-
-    <!-- **************************** End Modal ****************************** -->
-
-  <!-- Intro Heading -->
+              <!-- Intro Heading -->
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
     <h1 class="display-4">Welcome to Trivia</h1>
     <p class="lead">Play our trivia game: solve a random trivia or search by category</p>
 </div>
+
+<div class="container text-center">
+    <button class="btn btn-primary" onclick="window.location.href='/random' ">Random Question</button>
+</div>
 <br>
-<br>
+
+              <!-- bringing in the form in order to have seicific search -->
 <div class="container text-center">
   <p>Search for a Jeopardy category</p>
 
   <form  method="post">
-      <div class="autocomplete" style="width:300px;">
+      <div class="centerit" style="width:320px;">
           {% csrf_token %}
           {{ form.as_p }}
+          
       </div>
       <br>
       <button class="btn btn-outline-primary" type="submit">Submit</button>
 
   </form>
-  
-  <!-- <br>
-  <div class="form-group">
-    <select name="category-picked" class="custom-select custom-select-lg"  style="width: 400px" size="15">
-      <option selected>Select a category</option>
-      {% for category in categories %}
-      <option value="{{category.id}}">{{category.title}}</option>
-      {% endfor %} 
-    </select>
-  </div>
-  <div class="form-group">
-  <input href="/listcategory_results/{{category.id}}" type="submit" class="btn btn-primary"/>             
-  </div> -->
-  
+  <br>
+  <hr>
+  <br>
+
+                <!-- these are a list of random categories -->
+  <button class="btn btn-primary" value="Refresh Page" onclick="window.location.reload();">New Categories</button>
+
+  <p class="lead">Here are some category suggestions to get you started</p>
+
+<div class="list-group container-fluid col-7 ">
+    {% for category in categories %}
+    <li class="list-group-item">{{category.title}}</a>
+      
+    {% endfor %}
+</div>
+
 </div>  
 <br>
 

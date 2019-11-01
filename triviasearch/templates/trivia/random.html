@@ -1,5 +1,7 @@
 {% extends 'trivia/base.html' %}
 {% block content %}
+
+<!-- the label css for this is different than the ones on result pg -->
 <style>
 label {
     -webkit-perspective: 1000px;
@@ -37,7 +39,7 @@ label {
             <div class="card-body">
                 <h5 class="card-title">Trivia #{{ trivia_val.id }}</h5>
                 <!-- Category -->
-
+                <!-- front of the cards -->
                     <strong>Category:</strong>
                     <br>
                     {{ trivia_val.category}}
@@ -50,6 +52,7 @@ label {
                     <p>Click for Answer</p>
             </div>            
         </div>
+        <!-- back of cards -->
         <div class="back">
             <br> 
             <br>       
