@@ -25,7 +25,7 @@ SECRET_KEY = '3^ndjrf%0kt9&*@v5w+73f^8)gzj%81&fg554q-8f4ej(t4vu@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['jeopardysearchgame.herokuapp.com/']
+ALLOWED_HOSTS = []
 
 
 # Application definition
