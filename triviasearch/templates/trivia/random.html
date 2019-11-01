@@ -28,13 +28,20 @@ label {
     <p class="lead">solve a random trivia question</p>
 </div>
 
+<div style="text-align: center;">
+    <button class="btn btn-primary" value="Refresh Page" onclick="window.location.reload();">New Question</button>
+</div>
+
+
 
 <!-- Main Content -->
 <!-- Cards -->
+{% for trivia_val in trivia %}
 <label>
+    <br>
     <input type="checkbox" style="opacity:0"/>
     <div class=" card " >
-        {% for trivia_val in trivia %}
+        
         <div class="front">
             <div class="card-body">
                 <h5 class="card-title">Trivia #{{ trivia_val.id }}</h5>
@@ -61,11 +68,11 @@ label {
             <br>
             {{ trivia_val.answer }}
         </div>
-    </div>
-    
-    {% endfor %}
+    </div>  
 </label>
-<div style="text-align: center;">
-    <button class="btn btn-primary" value="Refresh Page" onclick="window.location.reload();">New Question</button>
-</div>
+
+{% endfor %}
+
+
+
 {% endblock %}
