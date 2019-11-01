@@ -1,1 +1,1 @@
-web: gunicorn django jeopartygame.wsgi
+web: gunicorn jeopartygame.wsgi
